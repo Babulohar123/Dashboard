@@ -11,7 +11,6 @@
                     <a href="index.html" class="nav-item nav-link active">Home</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="course.html" class="nav-item nav-link">Courses</a>
-                    <a href="course.html" class="nav-item nav-link">Performance</a>
                     <a href="course.html" class="nav-item nav-link">Team</a>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>

@@ -1,35 +1,18 @@
 <?php
+use App\Http\Controllers\CourseController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-//frontend
-Route::get('/', function () {
-    return view('frontend.index');
-});
-Route::view('/index', 'frontend.index')->name('index');
-Route::view('/master', 'frontend.layouts.master')->name('master');
-Route::view('/about', 'frontend.pages.about')->name('about');
-Route::post('/signup', [SignupController::class, 'store'])->name('signup');
+// Frontend
+Route::view('index', 'frontend.index')->name('home');
+Route::view('/about', 'frontend.partial.about')->name('about');
+Route::view('/courses', 'frontend.partial.courses')->name('courses');
+Route::view('/team', 'frontend.partial.team')->name('team');
+Route::view('/contact', 'frontend.partial.contact')->name('contact');
 
+// For courses with controller (optional if dynamic)
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.list');
+Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
 
-//backend
-//Route::get('/', function () {
- //return view('backend.index');
-//});
-
-
-//Route::view('/index', 'backend.index')->name('index');
+// Backend routes
 Route::view('/master', 'backend.layouts.master')->name('master');
 Route::view('/dashboard', 'backend.dashboard')->name('dashboard');
-
-
 Route::view('/sidebar', 'backend.includes.sidebar')->name('sidebar');
-
