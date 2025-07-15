@@ -32,4 +32,5 @@ Route::view('/dashboard', 'backend.dashboard')->name('dashboard');
 
 
 Route::view('/sidebar', 'backend.includes.sidebar')->name('sidebar');
+Route::view('/header', 'backend.includes.header')->name('header');
 
