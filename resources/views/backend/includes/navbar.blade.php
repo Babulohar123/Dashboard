@@ -24,9 +24,9 @@
             <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                 <a href="#" class="dropdown-item">
                     <div class="d-flex align-items-center">
-                        <img class="rounded-circle" src="{{ asset('backend/img/user.jpg') }}" alt="User" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="{{ asset('backend/img/users.jpg') }}" alt="User" style="width: 40px; height: 40px;">
                         <div class="ms-2">
-                            <h6 class="fw-normal mb-0">Jhon sent you a message</h6>
+                            <h6 class="fw-normal mb-0">Biveknand sent you a message</h6>
                             <small>15 minutes ago</small>
                         </div>
                     </div>
@@ -55,8 +55,8 @@
         <!-- User Dropdown -->
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img class="rounded-circle me-lg-2" src="{{ asset('backend/img/user.jpg') }}" alt="User" style="width: 40px; height: 40px;">
-                <span class="d-none d-lg-inline-flex">John Doe</span>
+                <img class="rounded-circle me-lg-2" src="{{ asset('backend/img/users.jpg') }}" alt="User" style="width: 40px; height: 40px;">
+                <span class="d-none d-lg-inline-flex">Bivekanand</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                 <a href="#" class="dropdown-item">My Profile</a>
