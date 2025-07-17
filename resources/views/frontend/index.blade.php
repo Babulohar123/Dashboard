@@ -9,7 +9,7 @@
     <!-- Header Start -->
     @include('frontend.partial.hero')
     <!-- Header End -->
-
+ 
 
     <!-- About Start -->
     @include('frontend.partial.about')

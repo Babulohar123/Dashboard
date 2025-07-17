@@ -1,10 +1,12 @@
 <?php
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SettingController;
-
+use App\Http\Controllers\Frontend\AuthController;
 
 // Frontend
-Route::view('index', 'frontend.index')->name('home');
+Route::get('/', function () {
+    return view('frontend.index');
+});
 Route::view('/about', 'frontend.partial.about')->name('about');
 Route::view('/courses', 'frontend.partial.courses')->name('courses');
 Route::view('/team', 'frontend.partial.team')->name('team');
@@ -14,20 +16,17 @@ Route::view('/contact', 'frontend.partial.contact')->name('contact');
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.list');
 Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
 
-
-
-//Backend routes
+// Backend routes
 Route::view('/master', 'backend.layouts.master')->name('master');
 Route::view('/dashboard', 'backend.dashboard')->name('dashboard');
 
 Route::get('/settings', [SettingController::class, 'index'])->name('site.setting');
 Route::post('/settings/update', [SettingController::class, 'update'])->name('site.setting.update');
-// Site Settings routes
-//Route::get('/settings', 'SettingController@index')->name('site.setting');
-//Route::post('/settings/update', 'SettingController@update')->name('site.setting.update');
 
-// Site setting form
-//Route::get('/settings/form', 'SettingController@form')->name('site.setting.form');
-//Route::post('/settings/form/update', 'SettingController@formUpdate')->name('site.setting.form.update');
+// Auth Routes (Custom Frontend AuthController)
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-// Route::view('/form', 'backend.settings.form')->name('form');
+Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('register', [AuthController::class, 'register']);

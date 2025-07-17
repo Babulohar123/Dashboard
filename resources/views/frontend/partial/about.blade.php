@@ -92,14 +92,37 @@
 
     <!-- Why Choose Us -->
     <section class="py-5 text-center text-white" style="background: linear-gradient(135deg, #00c6ff, #0056b3);">
-        <div class="container">
-            <h2 class="fw-bolder mb-5">Why Choose <span style="color: #ffc107;">EduDashboard?</span></h2>
-            <div class="row g-4">
-                <!-- Cards here -->
-                <!-- Keep your original cards code -->
+    <div class="container">
+        <h2 class="fw-bolder mb-5">Why Choose <span style="color: #ffc107;">EduDashboard?</span></h2>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-transparent border-0 text-white h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Comprehensive Learning Platform</h5>
+                        <p class="card-text">EduDashboard offers a one-stop solution for students and educators to manage courses, track progress, and access valuable resources anytime, anywhere.</p>
+                    </div>
+                </div>
             </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-transparent border-0 text-white h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">User-Friendly Interface</h5>
+                        <p class="card-text">Our clean and intuitive design ensures that users of all ages and skill levels can easily navigate and maximize their learning experience.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mx-auto">
+                <div class="card bg-transparent border-0 text-white h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Real-Time Performance Tracking</h5>
+                        <p class="card-text">Stay informed with up-to-date dashboards that highlight your academic performance, attendance, and key metrics, empowering you to make informed decisions.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- You can add more cards here as needed -->
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Our Vision -->
     <section class="py-5 bg-light">
