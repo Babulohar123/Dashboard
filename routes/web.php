@@ -3,8 +3,8 @@ use App\Http\Controllers\CourseController;
 
 // Frontend
 Route::view('index', 'frontend.index')->name('home');
-Route::view('/about', 'frontend.partial.about')->name('about');
-Route::view('/courses', 'frontend.partial.courses')->name('courses');
+Route::view('/about', 'frontend.partial.about.')->name('about');
+Route::get('/courses', 'CourseController@index')->name('courses.index');
 Route::view('/team', 'frontend.partial.team')->name('team');
 Route::view('/contact', 'frontend.partial.contact')->name('contact');
 
