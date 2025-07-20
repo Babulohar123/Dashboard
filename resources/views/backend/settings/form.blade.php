@@ -53,7 +53,9 @@
         <label for="logo" class="form-label">Logo</label>
         <input type="file" class="form-control" id="logo" name="logo">
         @if(!empty($settings['logo']))
-            <img src="{{ asset($settings['logo']) }}" alt="logo" class="mt-2" width="100">
+            <div class="mt-2">
+                <img src="{{ asset($settings['logo']) }}" alt="Logo Preview" class="img-thumbnail" style="max-width: 150px;">
+            </div>
         @endif
     </div>
 

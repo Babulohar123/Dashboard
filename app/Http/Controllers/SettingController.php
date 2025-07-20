@@ -8,14 +8,18 @@ use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
-   public function index()
+    public function index()
     {
-        $settings = SiteSetting::all()->keyBy('key')->pluck('value', 'key')->toArray();
+        // Fetch settings as key=>value array
+        $settings = SiteSetting::pluck('value', 'key')->toArray();
+
+        // Pass to view as 'settings'
         return view('backend.settings.form', compact('settings'));
     }
 
     public function update(Request $request)
     {
+        // Validate input
         $request->validate([
             'sitename'   => 'required|string|max:255',
             'address'    => 'required|string|max:255',
@@ -26,27 +30,28 @@ class SettingController extends Controller
             'logo'       => 'nullable|image|mimes:jpeg,png,jpg,svg|max:8048',
         ]);
 
-        // Handle logo upload
+        // Handle logo upload if present
         if ($request->hasFile('logo')) {
             $logo = $request->file('logo');
             $logoName = time() . '_' . $logo->getClientOriginalName();
             $logoPath = $logo->storeAs('public/logos', $logoName);
             $logoUrl = 'storage/logos/' . $logoName;
 
+            // Delete old logo file if exists
             $oldLogo = SiteSetting::where('key', 'logo')->value('value');
             if ($oldLogo && Storage::exists(str_replace('storage/', 'public/', $oldLogo))) {
                 Storage::delete(str_replace('storage/', 'public/', $oldLogo));
             }
 
+            // Save new logo path
             SiteSetting::updateOrCreate(['key' => 'logo'], ['value' => $logoUrl]);
         }
 
-        // Loop for text inputs
-         foreach ($request->except(['_token', 'logo']) as $key => $value) {
+        // Update other settings except _token and logo
+        foreach ($request->except(['_token', 'logo']) as $key => $value) {
             SiteSetting::updateOrCreate(['key' => $key], ['value' => $value]);
         }
 
         return redirect()->back()->with('success', 'Settings updated successfully!');
     }
 }
-

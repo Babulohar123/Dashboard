@@ -7,6 +7,18 @@
         @csrf
 
         <div class="form-group mb-3">
+        <div class="form-group mb-3">
+            <label for="role">Register As</label>
+            <select id="role" name="role" class="form-control @error('role') is-invalid @enderror" required>
+                <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Student</option>
+                <option value="parent" {{ old('role') == 'parent' ? 'selected' : '' }}>Parent</option>
+                <option value="teacher" {{ old('role') == 'teacher' ? 'selected' : '' }}>Teacher</option>
+                <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+            </select>
+            @error('role')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
             <label for="name">Name</label>
             <input id="name" type="text" name="name" 
                 class="form-control @error('name') is-invalid @enderror" 
