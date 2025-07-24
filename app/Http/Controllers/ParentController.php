@@ -2,79 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\ParentModel;  // Model का नाम ParentModel रखा है
 use Illuminate\Http\Request;
-use App\ParentFeedback;
 
 class ParentController extends Controller
 {
-    // Parent dashboard with summary data
     public function index()
     {
-        $parents = ParentFeedback::latest()->get();
-
-        $totalParents = $parents->count();
-        $feedbacks = $parents->whereNotNull('feedback')->count();
-        $messages = 98; // Placeholder static data
-        $meetings = 5;  // Placeholder static data
-
-        return view('backend.admin.parents_dashboard', compact(
-            'parents', 'totalParents', 'feedbacks', 'messages', 'meetings'
-        ));
+        $parents = ParentModel::all();
+        return view('parents.index', compact('parents'));
     }
 
-    // Show form to create new parent feedback (optional)
     public function create()
     {
-        return view('backend.admin.parents_create'); // Agar create form hai to
+        return view('parents.create');
     }
 
-    // Store new parent feedback to DB
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'student_name' => 'required|string|max:255',
-            'feedback_date' => 'required|date',
-            'feedback' => 'nullable|string',
-            'status' => 'required|in:Reviewed,Pending,Action Required',
+        $request->validate([
+            'name'    => 'required',
+            'email'   => 'required|email|unique:parents',
+            'phone'   => 'required',
+            'address' => 'required',
         ]);
 
-        ParentFeedback::create($validated);
+        ParentModel::create($request->all());
 
-        return redirect()->route('admin.parents.dashboard')->with('success', 'Parent added successfully!');
+        return redirect()->route('admin.parents.index')->with('success', 'Parent created successfully.');
     }
 
-    // Show form to edit existing parent feedback
-    public function edit($id)
+    public function edit(ParentModel $parent)
     {
-        $parent = ParentFeedback::findOrFail($id);
-
-        return view('backend.admin.parents_edit', compact('parent'));
+        return view('parents.edit', compact('parent'));
     }
 
-    // Update existing parent feedback in DB
-    public function update(Request $request, $id)
+    public function update(Request $request, ParentModel $parent)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'student_name' => 'required|string|max:255',
-            'feedback_date' => 'required|date',
-            'feedback' => 'nullable|string',
-            'status' => 'required|in:Reviewed,Pending,Action Required',
+        $request->validate([
+            'name'    => 'required',
+            'email'   => 'required|email|unique:parents,email,' . $parent->id,
+            'phone'   => 'required',
+            'address' => 'required',
         ]);
 
-        $parent = ParentFeedback::findOrFail($id);
-        $parent->update($validated);
+        $parent->update($request->all());
 
-        return redirect()->route('admin.parents.dashboard')->with('success', 'Parent updated successfully!');
+        return redirect()->route('admin.parents.index')->with('success', 'Parent updated successfully.');
     }
 
-    // Delete a parent feedback record
-    public function destroy($id)
+    public function destroy(ParentModel $parent)
     {
-        $parent = ParentFeedback::findOrFail($id);
         $parent->delete();
 
-        return back()->with('success', 'Parent deleted successfully!');
+        return redirect()->route('admin.parents.index')->with('success', 'Parent deleted successfully.');
     }
 }

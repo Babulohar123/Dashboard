@@ -4,14 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ParentFeedback extends Model
+class ParentModel extends Model
 {
-    protected $table = 'parents';
-    protected $fillable = [
-        'name',
-        'student_name',
-        'feedback_date',
-        'feedback',
-        'status',
-    ];
+
+    protected $fillable = ['name', 'email', 'phone', 'address'];
 }

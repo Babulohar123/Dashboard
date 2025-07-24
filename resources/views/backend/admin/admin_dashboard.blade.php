@@ -5,6 +5,7 @@
 @section('content')
 <div class="container mt-4">
     <h2>Admin Dashboard</h2>
+    
     <div class="row">
         <div class="col-md-3">
             <div class="card mb-3">
@@ -14,6 +15,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="col-md-3">
             <div class="card mb-3">
                 <div class="card-body text-center">
@@ -22,6 +24,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="col-md-3">
             <div class="card mb-3">
                 <div class="card-body text-center">
@@ -30,6 +33,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="col-md-3">
             <div class="card mb-3">
                 <div class="card-body text-center">
@@ -38,21 +42,40 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> <!-- /.row -->
+
     <div class="card mt-4">
         <div class="card-header bg-white border-bottom">
             <h5 class="mb-0"><i class="fas fa-bolt text-warning mr-2"></i>Quick Actions</h5>
         </div>
+        
         <div class="card-body">
             <div class="row">
+                <!-- Users Management -->
                 <div class="col-md-3 mb-3">
-                    <div class="card quick-action-card border">
-                        <div class="card-body text-center p-3">
-                            <i class="fas fa-user-plus text-primary fa-2x mb-2"></i>
-                            <h6 class="mb-0">Add New User</h6>
+                    <a href="{{ route('users.index') }}" class="text-decoration-none">
+                        <div class="card quick-action-card border">
+                            <div class="card-body text-center p-3">
+                                <i class="fas fa-user-plus text-primary fa-2x mb-2"></i>
+                                <h6 class="mb-0">Users Management</h6>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
+
+<!-- Prents Management -->
+ <div class="col-md-3 mb-3">
+    <a href="{{ route('parents.index') }}" class="text-decoration-none">
+        <div class="card quick-action-card border">
+            <div class="card-body text-center p-3">
+                <i class="fas fa-users text-warning fa-2x mb-2"></i>
+                <h6 class="mb-0">Parents Management</h6>
+            </div>
+        </div>
+    </a>
+</div>
+
+                <!-- Generate Reports -->
                 <div class="col-md-3 mb-3">
                     <div class="card quick-action-card border">
                         <div class="card-body text-center p-3">
@@ -61,6 +84,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Schedule Event -->
                 <div class="col-md-3 mb-3">
                     <div class="card quick-action-card border">
                         <div class="card-body text-center p-3">
@@ -69,16 +94,20 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Teachers Management -->
                 <div class="col-md-3 mb-3">
-                    <div class="card quick-action-card border">
-                        <div class="card-body text-center p-3">
-                            <i class="fas fa-cog text-secondary fa-2x mb-2"></i>
-                            <h6 class="mb-0">System Settings</h6>
+                    <a href="{{ route('teachers.index') }}" class="text-decoration-none">
+                        <div class="card quick-action-card border">
+                            <div class="card-body text-center p-3">
+                                <i class="fas fa-user-plus text-primary fa-2x mb-2"></i>
+                                <h6 class="mb-0">Teachers Management</h6>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+            </div> <!-- /.row -->
+        </div> <!-- /.card-body -->
+    </div> <!-- /.card -->
+</div> <!-- /.container -->
 @endsection

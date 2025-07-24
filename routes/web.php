@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
 // Frontend Routes (Public)
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
@@ -41,7 +42,20 @@ Route::middleware('auth')->group(function () {
     // Admin Routes
     Route::prefix('admin')->group(function () {
         // Admin Dashboard
-        Route::get('/admin-dashboard', [AdminController::class, 'adminDashboard'])->name('admin.admin.dashboard');
+     Route::get('/admin-dashboard', [AdminController::class, 'adminDashboard'])->name('admin.admin.dashboard');
+
+    Route::get ('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+//teacher routes
+        Route::resource('teachers', TeacherController::class);
+ //parent routes
+        Route::resource('parents', ParentController::class);
+
+
 
         // Parent Dashboard + CRUD
         Route::get('/parents-dashboard', [ParentController::class, 'index'])->name('admin.parents.dashboard');
@@ -55,3 +69,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/table', [AdminController::class, 'showTeacherTable'])->name('admin.table');
     });
 });
+
+// User Management Routes
+
